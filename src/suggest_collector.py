@@ -46,9 +46,6 @@ def get_suggestions(suggest_api_params : SuggestApiParams):
         print(f"fail to get suggest - retry : {_payload}")
         raise Exception("error!")
 
-def get_target_suggest(suggest_api_params : SuggestApiParams):
-    return get_suggestions(suggest_api_params)
-
 class Suggest:
     def __init__(self):
         self.lang_dict = {"ko":Ko(),
@@ -66,7 +63,6 @@ class Suggest:
                                     for t in targets]
         with Pool(num_processes) as pool:
             result = pool.map(get_suggestions, targets)
-            # result = pool.map(get_target_suggest, targets)
         return result
     
 if __name__ == "__main__":
