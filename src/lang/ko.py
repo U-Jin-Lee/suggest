@@ -6,7 +6,7 @@ from utils.file import PickleFileHandler
 class Ko(LanguageBase):
     def __init__(self) -> None:
         super().__init__()
-        self.complete_hanguls = PickleFileHandler("/data/data2/yj.lee/suggest/src/lang/ko/data/characters.pickle").read()
+        self.complete_hanguls = PickleFileHandler("/data/data2/yj.lee/git/suggest/src/lang/ko/data/characters.pickle").read()
 
         self.alphabets = self.get_alphabets()
         self.numbers = self.get_numbers()

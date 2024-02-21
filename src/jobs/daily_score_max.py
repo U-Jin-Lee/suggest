@@ -11,10 +11,10 @@ def main(jobid,
          lang,
          ):
     # 하루에 한번 수집시
-    data = PickleFileHandler(f"/data/data2/yj.lee/suggest/src/data/result/ko/{jobid}/{jobid}_score.pickle").read()
+    data = PickleFileHandler(f"/data/data2/yj.lee/git/suggest/src/data/result/ko/{jobid}/{jobid}_score.pickle").read()
     # 하루에 두번 수집시
-    # data = PickleFileHandler(f"/data/data2/yj.lee/suggest/src/data/result/ko/{jobid}/{jobid}_1_score.pickle").read()
-    # data += PickleFileHandler(f"/data/data2/yj.lee/suggest/src/data/result/ko/{jobid}/{jobid}_2_score.pickle").read()
+    # data = PickleFileHandler(f"/data/data2/yj.lee/git/suggest/src/data/result/ko/{jobid}/{jobid}_1_score.pickle").read()
+    # data += PickleFileHandler(f"/data/data2/yj.lee/git/suggest/src/data/result/ko/{jobid}/{jobid}_2_score.pickle").read()
     all_scores_by_kw = combine_dictionary(data)
     max_data=[]
     for d in tqdm(data):
@@ -34,7 +34,7 @@ def main(jobid,
     print(f"columns_to_sort : ", columns_to_sort)          
     score_df = score_df.sort_values(columns_to_sort,
                                     ascending=False)
-    score_df.to_csv(f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{jobid[:8]}/score_df.csv", index=False, encoding='utf-8-sig')
+    score_df.to_csv(f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{jobid[:8]}/score_df.csv", index=False, encoding='utf-8-sig')
     
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

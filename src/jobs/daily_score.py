@@ -23,12 +23,14 @@ def download(date,
              project_name: str # ['google_suggest_for_trend_target', 'google_suggest_for_trend']
                   ):
     hdfs = HdfsFileHandler()
-    hdfs_path = f"/user/ds/wordpopcorn/{lang}/daily/{project_name}/{date[:4]}/{date[:6]}/{date[:8]}"
-    local_path = f"/data/data2/yj.lee/suggest/src/data/tmp/{lang}/{date}"
+    daily_hdfs_path = f"/user/ds/wordpopcorn/{lang}/daily/{project_name}/{date[:4]}/{date[:6]}/{date[:8]}" # 오늘 날짜 hdfs 폴더
+    last_modified_folder = hdfs.last_modified_folder(daily_hdfs_path) # 가장 최신에 변경된 폴더만 가져오기
+    daily_last_hdfs_path = f"{daily_hdfs_path}/{last_modified_folder}"
+    local_path = f"./data/tmp/{lang}/{date}"
     if not os.path.exists(local_path):
         os.makedirs(local_path)
     
-    hdfs.download(hdfs_path, local_path)
+    hdfs.download(daily_last_hdfs_path, local_path)
     
     return local_path
 
@@ -74,9 +76,9 @@ def main(jobid,
     print(f"스코어링 시작 - {datetime.now()}")
     score_df = trend_scoring.total_score(data, lang)
     
-    if not os.path.exists(f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{jobid[:8]}"):
-        os.makedirs(f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{jobid[:8]}")
-    score_df.to_csv(f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{jobid[:8]}/score_df.csv", index=False, encoding='utf-8-sig')
+    if not os.path.exists(f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{jobid[:8]}"):
+        os.makedirs(f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{jobid[:8]}")
+    score_df.to_csv(f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{jobid[:8]}/score_df.csv", index=False, encoding='utf-8-sig')
     
     print(f"모든 작업 종료 - {datetime.now()}")
     remove_folder(local_path)
@@ -95,9 +97,9 @@ def main_score(jobid,
     print(f"스코어링 시작 - {datetime.now()}")
     score_df = trend_scoring.total_score(data, lang)
     
-    if not os.path.exists(f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{jobid[:8]}"):
-        os.makedirs(f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{jobid[:8]}")
-    score_df.to_csv(f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{jobid[:8]}/score_df.csv", index=False, encoding='utf-8-sig')
+    if not os.path.exists(f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{jobid[:8]}"):
+        os.makedirs(f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{jobid[:8]}")
+    score_df.to_csv(f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{jobid[:8]}/score_df.csv", index=False, encoding='utf-8-sig')
     
     print(f"모든 작업 종료 - {datetime.now()}")
     remove_folder(local_path)

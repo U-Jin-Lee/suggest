@@ -23,7 +23,7 @@ def download(date,
     hdfs = HdfsFileHandler()
     hdfs_path = f"/user/ds/wordpopcorn/{lang}/daily/{project_name}/{date[:4]}/{date[:6]}/{date[:8]}"
     if project_name == "google_suggest_for_trend_target":
-        local_path = f"/data/data2/yj.lee/suggest/src/data/tmp/{lang}/{date}/target"
+        local_path = f"/data/data2/yj.lee/git/suggest/src/data/tmp/{lang}/{date}/target"
         
     if not os.path.exists(local_path):
         os.makedirs(local_path)
@@ -103,9 +103,9 @@ def main(jobid,
         print(f"  스코어링 시작 - {datetime.now()}")
         score_df = trend_scoring.total_score(data, lang, target.replace('_', ' '))
         
-        if not os.path.exists(f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{jobid[:8]}"):
-            os.makedirs(f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{jobid[:8]}")
-        score_df.to_csv(f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{jobid[:8]}/score_{target}_df.csv", index=False, encoding='utf-8-sig')
+        if not os.path.exists(f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{jobid[:8]}"):
+            os.makedirs(f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{jobid[:8]}")
+        score_df.to_csv(f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{jobid[:8]}/score_{target}_df.csv", index=False, encoding='utf-8-sig')
         print(f"  스코어링 완료 - {datetime.now()}")
         
     print(f"모든 작업 종료 - {datetime.now()}")

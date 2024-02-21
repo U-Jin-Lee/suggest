@@ -9,9 +9,9 @@ def main(date : str, # yyyymmdd
          target_keyword : str):
     suggest = Suggest()
     if target_keyword == None:
-        result_folder_path = f"/data/data2/yj.lee/suggest/src/data/result/{date}/basic"
+        result_folder_path = f"/data/data2/yj.lee/git/suggest/src/data/result/{date}/basic"
     else:
-        result_folder_path = f"/data/data2/yj.lee/suggest/src/data/result/{date}/{target_keyword}"
+        result_folder_path = f"/data/data2/yj.lee/git/suggest/src/data/result/{date}/{target_keyword}"
     if not os.path.exists(result_folder_path):
         # os.mkdir(result_folder_path)
         os.makedirs(result_folder_path)

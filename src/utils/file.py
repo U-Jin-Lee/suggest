@@ -99,4 +99,4 @@ def find_files_by_format(folder_path,
     return format_files
 
 if __name__ == "__main__":
-    extract_gzip_files("/data/data2/yj.lee/suggest/src/data/tmp/ko/20240207")
+    extract_gzip_files("/data/data2/yj.lee/git/suggest/src/data/tmp/ko/20240207")

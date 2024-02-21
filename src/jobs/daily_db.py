@@ -21,7 +21,7 @@ def make_insert_values(date,
 
 def main(date,
          lang):
-    df_path = f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{date}/score_df.csv"
+    df_path = f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{date}/score_df.csv"
     df = pd.read_csv(df_path)
     insert_values = make_insert_values(date, df)
     
@@ -32,7 +32,7 @@ def main(date,
 
 def main_db(date,
          lang):
-    df_path = f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{date}/score_df.csv"
+    df_path = f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{date}/score_df.csv"
     df = pd.read_csv(df_path)
     insert_values = make_insert_values(date, df)
     

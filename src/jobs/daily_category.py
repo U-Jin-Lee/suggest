@@ -5,14 +5,14 @@ import pandas as pd
 from category.knn import category_knn
 
 def main(date, lang):
-    df_path = f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{date}/score_df.csv"
+    df_path = f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{date}/score_df.csv"
     
     score_df = pd.read_csv(df_path)
     score_df['category'] = category_knn.predict(list(score_df['keyword']))
     score_df.to_csv(df_path, index=False, encoding='utf-8-sig')
 
 def main_category(date, lang):
-    df_path = f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{date}/score_df.csv"
+    df_path = f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{date}/score_df.csv"
     
     score_df = pd.read_csv(df_path)
     score_df['category'] = category_knn.predict(list(score_df['keyword']))

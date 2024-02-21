@@ -115,7 +115,7 @@ if __name__ == "__main__":
     test_dbgout(f"{lang} - 기본 서제스트 디비 업데이트 완료")
     
     # 모든 결과 삭제
-    # remove_path = f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{today}"
+    # remove_path = f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{today}"
     # remove_folder(remove_path)
     # test_dbgout(f"{lang} - 데일리 결과 로컬 삭제 완료 ({remove_path})")
     

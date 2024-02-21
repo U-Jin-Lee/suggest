@@ -9,7 +9,7 @@ class CategoryKNN:
         # 임베딩 모델
         embedding_model_path = "/data2/wordpopcorn/wordpopcorn/ko/model/fasttext/20230427000000/model.bin"
         self.embedding_model = fasttext.load_model(embedding_model_path)
-        self.knn_data = pd.read_csv("/data/data2/yj.lee/suggest/src/category/data/ko/knn_data.csv")
+        self.knn_data = pd.read_csv("/data/data2/yj.lee/git/suggest/src/category/data/ko/knn_data.csv")
         vectors = []
         for i in range(len(self.knn_data)):
             keyword = self.knn_data.loc[i, 'keyword']

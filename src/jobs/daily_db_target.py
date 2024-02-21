@@ -19,10 +19,10 @@ def get_today_trend_result_by_target(all_targets , lang, date):
     
     target_trend_kws = {}
     for target in all_targets:
-        data_path = f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{date}/score_{target}_df.csv"
+        data_path = f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{date}/score_{target}_df.csv"
         if not os.path.exists(data_path):
             continue
-        target_score = pd.read_csv(f"/data/data2/yj.lee/suggest/src/data/result/{lang}/{date}/score_{target}_df.csv")
+        target_score = pd.read_csv(f"/data/data2/yj.lee/git/suggest/src/data/result/{lang}/{date}/score_{target}_df.csv")
         if len(target_score) == 0 :
             continue
         target_score = target_score.sort_values('score', ascending=False).reset_index(drop=True)
