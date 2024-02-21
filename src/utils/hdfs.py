@@ -85,3 +85,30 @@ class HdfsFileHandler(FileHandler):
         else:
             print(f"Source Not Exist Error: {source}")
             raise FileNotFoundError
+        
+    def last_modified_folder(self, folder_path):
+        # 폴더 안의 모든 항목 가져오기
+        contents = self.client.list(folder_path)
+
+        # 최신 폴더 정보 초기화
+        latest_folder = None
+        latest_modification_time = 0
+
+        # 각 항목에 대해 최신 수정 시간인지 확인
+        for item in contents:
+            item_path = os.path.join(folder_path, item)
+            item_stats = self.client.status(item_path)
+
+            # 폴더인 경우에만 검사
+            if item_stats['type'] == 'DIRECTORY':
+                modification_time = item_stats['modificationTime']
+
+                # 최신 수정 시간인 경우 업데이트
+                if modification_time > latest_modification_time:
+                    latest_modification_time = modification_time
+                    latest_folder = item
+
+        # 최신 폴더 출력
+        print("Latest folder:", latest_folder)
+        
+        return latest_folder

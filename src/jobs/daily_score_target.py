@@ -21,14 +21,16 @@ def download(date,
              project_name: str # ['google_suggest_for_trend_target', 'google_suggest_for_trend']
                   ):
     hdfs = HdfsFileHandler()
-    hdfs_path = f"/user/ds/wordpopcorn/{lang}/daily/{project_name}/{date[:4]}/{date[:6]}/{date[:8]}"
+    daily_hdfs_path = f"/user/ds/wordpopcorn/{lang}/daily/{project_name}/{date[:4]}/{date[:6]}/{date[:8]}" # 오늘 날짜 hdfs 폴더
+    last_modified_folder = hdfs.last_modified_folder(daily_hdfs_path) # 가장 최신에 변경된 폴더만 가져오기
+    daily_last_hdfs_path = f"{daily_hdfs_path}/{last_modified_folder}"
     if project_name == "google_suggest_for_trend_target":
         local_path = f"/data/data2/yj.lee/git/suggest/src/data/tmp/{lang}/{date}/target"
         
     if not os.path.exists(local_path):
         os.makedirs(local_path)
     
-    hdfs.download(hdfs_path, local_path)
+    hdfs.download(daily_last_hdfs_path, local_path)
     
     return local_path
 
@@ -126,4 +128,3 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     main(args.date, args.lang, args.project)
-   
